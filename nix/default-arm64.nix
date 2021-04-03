@@ -68,14 +68,7 @@ let
     doCheck = false;
     enableParallelBuilding = true;
     outputs = [ "out" ];
-    nativeBuildInputs = with buildPackages; [
-      autoreconfHook
-      bash
-      gitMinimal
-      pkg-config
-      python3
-      which
-    ];
+    nativeBuildInputs = [ autoreconfHook bash gitMinimal pkg-config python3 which ];
     buildInputs = [ glibc glibc.static libcap libseccomp protobufc systemd yajl ];
     configureFlags = [ "--enable-static" ]
       ++ lib.optional (!enableSystemd) [ "--disable-systemd" ];
