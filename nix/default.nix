@@ -9,7 +9,7 @@ let
         libgpgerror = (static pkg.libgpgerror);
         libseccomp = (static pkg.libseccomp);
         protobufc = (static pkg.protobufc);
-        glib = (static pkg.glib).overrideAttrs(x: {
+        glib = (static pkg.glib).overrideAttrs (x: {
           outputs = [ "bin" "out" "dev" ];
           mesonFlags = [
             "-Ddefault_library=static"
@@ -17,8 +17,15 @@ let
             "-Dgtk_doc=false"
             "-Dnls=disabled"
           ];
+          postInstall = ''
+            moveToOutput "share/glib-2.0" "$dev"
+            substituteInPlace "$dev/bin/gdbus-codegen" --replace "$out" "$dev"
+            sed -i "$dev/bin/glib-gettextize" -e "s|^gettext_dir=.*|gettext_dir=$dev/share/glib-2.0/gettext|"
+            sed '1i#line 1 "${x.pname}-${x.version}/include/glib-2.0/gobject/gobjectnotifyqueue.c"' \
+              -i "$dev"/include/glib-2.0/gobject/gobjectnotifyqueue.c
+          '';
         });
-        libcap = (static pkg.libcap).overrideAttrs(x: {
+        libcap = (static pkg.libcap).overrideAttrs (x: {
           postInstall = ''
             mkdir -p "$doc/share/doc/${x.pname}-${x.version}"
             cp License "$doc/share/doc/${x.pname}-${x.version}/"
@@ -26,13 +33,13 @@ let
             mv "$lib"/lib/security "$pam/lib"
           '';
         });
-        systemd = (static pkg.systemd).overrideAttrs(x: {
+        systemd = (static pkg.systemd).overrideAttrs (x: {
           outputs = [ "out" "dev" ];
           mesonFlags = x.mesonFlags ++ [
             "-Dstatic-libsystemd=true"
           ];
         });
-        yajl = (static pkg.yajl).overrideAttrs(x: {
+        yajl = (static pkg.yajl).overrideAttrs (x: {
           preConfigure = ''
             export CMAKE_STATIC_LINKER_FLAGS="-static"
           '';
@@ -41,9 +48,9 @@ let
     };
   });
 
-  static = pkg: pkg.overrideAttrs(x: {
+  static = pkg: pkg.overrideAttrs (x: {
     doCheck = false;
-    configureFlags = (x.configureFlags or []) ++ [
+    configureFlags = (x.configureFlags or [ ]) ++ [
       "--without-shared"
       "--disable-shared"
     ];
@@ -78,4 +85,5 @@ let
       install -Dm755 crun $out/bin/crun
     '';
   };
-in self
+in
+self
