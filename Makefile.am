@@ -26,8 +26,6 @@ rpm: srpm
 	rpmbuild -ba $(RPM_OPTS) rpm/crun.spec
 	$(MAKE) clean-global-gitconfig
 
-CLEANFILES = crun.spec
-
 lib_LTLIBRARIES = libcrun.la
 
 check_LIBRARIES = libcrun_testing.a
