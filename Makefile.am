@@ -190,8 +190,6 @@ dist-hook:
 EXTRA_DIST += $(PYTHON_TESTS) tests/Makefile.tests tests/run_all_tests.sh tests/tests_utils.py build-aux/git-version-gen src/libcrun/signals.perf src/libcrun/mount_flags.perf
 BUILT_SOURCES = .version git-version.h
 
-CLEANFILES = crun.spec .version git-version.h
-
 man1_MANS = crun.1
 
 crun.1: $(abs_srcdir)/crun.1.md
