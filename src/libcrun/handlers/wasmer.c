@@ -98,7 +98,7 @@ libwasmer_exec (void *cookie, libcrun_container_t *container arg_unused,
   wasm_func_t *(*wasi_get_start_function) (wasm_instance_t *);
   intptr_t (*wasi_env_read_stdout) (struct wasi_env_t *, char *, uintptr_t);
   void (*wasi_env_delete) (struct wasi_env_t *);
-  void (*wasi_config_arg) (struct wasi_config_t *config, const char *arg);
+  void (*wasi_config_arg) (struct wasi_config_t * config, const char *arg);
   bool (*wasi_env_initialize_instance) (struct wasi_env_t *, wasm_store_t *, wasm_instance_t *);
 
   wat2wasm = dlsym (cookie, "wat2wasm");
