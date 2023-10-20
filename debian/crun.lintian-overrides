@@ -1,0 +1,4 @@
+crun: copyright-without-copyright-notice
+crun: initial-upload-closes-no-bugs
+crun: no-manual-page
+crun: zero-byte-file-in-doc-directory
