@@ -1,0 +1,5 @@
+crun (100:1.11.2-1) UNRELEASED; urgency=medium
+
+  * https://github.com/containers/crun/releases/tag/1.11.2
+
+ -- Wong Hoi Sing Edison <hswong3i@pantarei-design.com>  Tue, 07 Nov 2023 21:11:14 +0800
