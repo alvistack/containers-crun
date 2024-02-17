@@ -1,0 +1,11 @@
+Makefile
+aclocal.m4
+config.h
+config.log
+config.status
+libocispec/aclocal.m4
+libocispec/build-aux/ltmain.sh
+libocispec/m4/libtool.m4
+libtool
+rpm/crun.spec
+stamp-h1
