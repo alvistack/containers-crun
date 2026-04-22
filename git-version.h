@@ -1,0 +1,1 @@
+#define GIT_VERSION "6c96efc1c59bd3b89cdbbc56168af3aabd2de0b9"
