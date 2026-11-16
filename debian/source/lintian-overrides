@@ -1,0 +1,4 @@
+crun source: configure-generated-file-in-source
+crun source: file-without-copyright-information
+crun source: no-debian-changes
+crun source: source-is-missing
